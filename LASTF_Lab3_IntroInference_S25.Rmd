@@ -1,0 +1,262 @@
+---
+title: 'Lab #3: Data Collection & Introduction to Inference '
+date: "STAT 250 - Spring 2025"
+output: html_document
+---
+
+
+### Name: 
+
+
+
+
+## Skills
+
+* Describe and identify sampling techniques and any potential biases from them.  
+* Write a statistical research question which clearly defines the purpose, population, parameter, and variable of interest.  
+* Describe the sampling distribution of a statistic and define the standard error of a statistic.  Be able to distinguish the standard deviation from the standard error.  
+* Calculate the standard error.  
+* Given a study, describe the sampling distribution of $\bar{x}$ as specifically as possible.   
+* Explain that in order to estimate the population parameter, we must quantify the uncertainty from our point estimate.  
+* Identify and define the population and parameter of interest in a given study.  
+* Construct and interpret a confidence interval in the context of the problem.  
+*	Draw conclusions that apply to the population based on the results of the confidence interval; interpret the information in context.  
+
+
+
+
+**Please make sure to show all R code and output after each question so that we can see your work.** Write a sentence for each numerical value produced describing its meaning **in context with the proper units**. Be sure to submit your assignment as a .zip file that includes your edited, renamed .Rmd file, the .html you created from knitting, and the .Rproj file to receive credit. Detailed instructions for procedural parts of labs are found in the "General Lab Directions" on your Canvas page; refer to it or the R Video Tutorials for how to download/upload/etc. If you don't recall how to do something, you should first refer to your lecture notes, in-class examples, and the primers from Lab #1 and #2. Your lecture notes and readings on these topics are also good resources. This lab should be completed **individually.**
+
+
+This code chunk is used by R when knitting; you do not need to do anything with it unless you need to trouble shoot knitting when you are finished (see the General Lab Instructions document).
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, comment = "", warning = FALSE, message = FALSE)
+```
+
+
+***
+ **Reminder**: Before starting this lab, let us load the "ggformula" and "mosaic" packages we need for statistical and graphical functions. Use the `library()` function to load in each package in the code chunk below.  
+
+```{r, message=FALSE}
+
+
+```
+
+
+***
+
+## Part 1: Data Collection: Southern bull-kelp
+
+A researcher was interested in examining long-distance dispersal of drifting southern bull-kelp (*Durvillaea antarctica*) adults in the New Zealand Canterbury Bight to understand connectivity between coastal populations. (Collins et al. 2010. Mol. Ecol.) (Invertebrates can 'raft' on the detached kelp, which also remains alive until beach-cast, allowing long-distance dispersal events to occur.) Given part of their written methods below, answer the questions that follow. 
+
+*Methods* (excerpt)
+Collection of beach-cast *D. antarctica* samples from seven field sites spanning the Canterbury Bight region was performed in March 2009 and again in April/May 2010. At individual field sites, we typically sampled across approximately 0.5-2.0 km of coastline. Where possible, we sampled only the beach-cast specimens that included a holdfast and/or primary stipe to ensure that individuals were not sampled more than once. In the cases (primarily in 2010) where relatively low numbers of intact specimens were found at some sites, we collected tissue from large pieces of *D. antarctica* that were clearly separated (e.g. >20 m) from other such pieces, again to avoid repeated sampling of individual specimens. We generally targeted specimens stranded at or above the high tide mark and sampled the dried tips of their fronds to maximize success with DNA extraction. Typically, between 20 and 30 samples were collected per site per year, with a small piece (a few cm) of frond tissue preserved in 95% ethanol before being transferred to silica gel.
+
+For all multiple choice questions, **bold** (or __bold__) your answers but do not include the beginning letter or ending double spaces.
+
+1.1. What is the population of interest in this study?
+
+  a. all drifting *D. antarctica* in the Canterbury Bight  
+  b. all beach-cast *D. antarctica* in New Zealand 
+  c. all beach-cast *D. antarctica* in the Canterbury Bight  
+  d. all *D. antarctica* in the Canterbury Bight
+
+
+1.2. What is one case in this study?
+
+  a. one *D. antarctica*  
+  b. one month
+  c. one coastline  
+  d. one field site  
+
+
+1.3. What type of sample design did the researchers employ?
+
+  a. Stratified Random Sample  
+  b. Simple Random Sample  
+  c. Convenience Sample  
+  d. Volunteer Sample
+
+
+1.4. Biological studies can't always use a simple random sample like other fields, as they often don't have a sampling frame. How could the researchers introduce randomness into their study?
+
+> Insert answer here
+
+
+1.5. If the researchers assumed that the kelp on the beach was already a random sample of the kelp drifting in the ocean, could the researcher generalize their sample to the population? Why or why not?
+
+> Insert answer here
+
+
+
+***
+
+## Part 2: Sampling Distribution Properties
+
+2.1. Define the following terms:
+
+> Population distribution:  
+
+> Sample distribution:  
+
+> Sampling distribution:  
+
+
+2.2. Describe the characteristics for a *general* sampling distribution of the sample mean  from a population with mean $\mu$ and standard deviation $\sigma$. Be as specific as you can.
+
+> Center: 
+
+> Spread: 
+
+> Shape:  
+
+
+2.3. Why is there variation around the center of the sampling distribution?  
+
+> Insert answer here.
+
+
+2.4. Does the underlying population (the population from which you are taking samples) distribution affect the center of the sampling distribution? Explain why or why not.
+
+> Insert answer here.
+
+
+2.5. What factors influence the standard error for a sample mean? List each factor and how it influences the standard error if it increases. 
+
+> [Factor]: if it increases, the standard error ________.  
+> [Factor]: if it increases, the standard error ________.  
+
+
+
+
+
+***
+
+## Part 3: Data Collection - College Students Writing Utensils  
+
+We are interested in the number of writing utensils in the backpacks of all college students.
+
+
+3.1. Collect your own sample of *at least* 30 college students for the variable of the number of writing utensils (i.e, how many writing utensils are in their backpack?). Decide how to take your sample using any sampling method we've learned and collect the data. 
+
+Once you have collected your data, make a vector of your observations and store it as the object `raw` in the code chunk below. The code chunk then stores that object as the variable `utensils` inside a dataframe named `students`.
+
+```{r}
+raw<-c(__number__, __number__, __number__, ...) #add in your data here
+
+
+# Do NOT edit the rest of the code in this chunk; it creates the dataframe you will use and then displays it so you know how to use it
+students <- data.frame(utensils = raw) #creates a data frame inside R called  students, with a variable called utensils, which can be treated like data imported using read.csv()
+head(students)
+```
+
+
+3.2. What sampling method did you use? Describe and identify the sampling method. Any possible biases present? Justify your answers and be as specific as needed.   
+  
+> Description of collection method:  
+> Sampling Design Name & any biases:  
+> Justification:  
+
+
+3.3. Create a graphic of your sample distribution, making sure to label it appropriately.
+
+**Add code chunk here**
+
+
+3.4. Describe the shape of your distribution. 
+
+> Insert answer here
+
+
+3.5. Calculate the descriptive statistics to best quantify your distribution's center and spread. Write the values below using symbolic notation (e.g.: symbol = value, using RMarkdown to correctly format the symbols). 
+
+**Add code chunk here**
+
+> Insert answer here.
+
+
+
+
+
+
+***
+
+## Part 4: Inference: Estimating Number of Writing Utensils
+
+
+We are interested in estimating the actual value of the number of writing utensils in the backpacks of all college students.
+
+4.1. What is the statistical research question?
+
+> Insert answer here.
+
+
+4.2. What is the population of interest in this study? Remember to be as specific as needed.
+
+> Insert answer here.
+
+
+4.3. What is the parameter of interest in this study?
+
+> [insert appropriate markdown symbol here] = [state parameter of interest in words]
+
+
+
+4.4. Fill in the table describing what each symbol represents, whether it represents a parameter or a statistic, and the calculated values of each in this context, if known. You may need to insert a code chunk to calculate the values that can be known. Type "NA" in the cell, if unknown.
+
+Symbol    | Description        | parameter or statistic? | Calculated Value (with units)
+--------- | ------------------ | ----------------------- | ------------------
+$\mu$     |                    |                         |          
+$\bar{x}$ |                    |                         |           
+$s$       |                    |                         |           
+$n$       |                    |                         |            
+
+
+
+4.5. Check the conditions for constructing a confidence interval on your data. The conditions are listed, you just need to answer if they were met and justify why in the context of the question, including context or evidence from your study.  
+
+> 1. Random sample: [Met?]; [Justification]  
+  2. Normality or Sufficient sample size:  [Met?]
+      2a. Is the sample from a Normally distributed population or does the sample data have a roughly bell-shaped or symmetric distribution? [Yes / No]; [Justification]       
+      2b. Is the sample size sufficient? [Yes / No]; [Justification]
+      
+
+
+4.6. Let's use a model to find our confidence interval.    
+- Go to: http://www.rossmanchance.com/applets/2021/tbia/TBIA.html   
+- Change the scenario to 'one mean'  
+- Enter your sample's $n$, $\bar{x}$, and $s$ into the fields, then 'calculate'  
+- Click "Confidence Interval".  
+- Enter the correct confidence level.  
+- Click 'Calculate.'  
+- The confidence interval and degrees of freedom are displayed.  
+
+> Record the calculated confidence interval and degrees of freedom that is returned
+> CI = (____, ____), df = ____
+
+
+
+4.7. Interpret your confidence interval from 4.6 in the context of the question.
+
+> Based on a sample, we are **[insert confidence level]** confident that the **[write parameter of interest]** is a single value between **[insert lower bound value]** and **[insert upper bound value]** **[insert units]**. 
+
+
+4.8. Is there evidence from Exploratory Data Analysis that the number of writing utensils in the backpacks of college students is more than two? Be sure to cite the evidence, as well as describe why it supplies evidence for the value of the parameter.  
+
+> Insert answer here.
+
+
+
+4.9. Based on the sample you took, can we generalize to the population of interest? Why or why not? If so, explain why. If not, explain why and, if applicable, the population that could be generalized to.
+
+> Insert answer here.
+
+
+
+4.10. To use the model to calculate the confidence interval, a condition/conditions from 4.5 needed to be satisfied. Which condition(s) are they, and what if you hadn't met that condition? What would that mean for your conclusion?
+
+> Insert answer here. 
+
+
+
+Before you finish -- check your knitted document. Is it easy to read? Do you need to add spaces anywhere to create line breaks? Did you accidentally delete any of the answer formatting?
