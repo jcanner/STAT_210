@@ -1,0 +1,231 @@
+---
+title: 'Lab #4 - Confidence Intervals for One Population Mean'
+date: "STAT 250 - Spring 2025"
+output: 
+  html_document: default
+---
+
+
+### Name: 
+
+
+
+## Skills
+
+*  To recognize and pull out key information from a research scenario 
+*  Construct a confidence interval for a population mean  
+*  Given a confidence level ($1-\alpha$), determine the critical value (t*) needed to construct the confidence interval   
+*  Construct and interpret a one sample interval for the mean based on the t-distribution  
+*  Assess the conditions necessary to construct a Student's t confidence interval
+
+
+
+**Please make sure to show all R code and output after each question so that we can see your work.** Write a sentence for each numerical value produced describing its meaning **in context with the proper units**. Be sure to submit your full project as a .zip file that includes your edited, renamed .Rmd file, the .html you created from knitting, and the .Rproj file to receive credit. Detailed instructions for procedural parts of labs are found in the "General Lab Directions" on your Canvas page; refer to it for how to download/upload/etc. If you don't recall how to do something, you should first refer to your lecture notes, in-class examples, and the primers from Lab #1 and #2. Your lecture notes and readings on these topics are also good resources. This lab should be completed **individually.**  
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, comment = "", warning = FALSE, message = FALSE)
+```
+
+
+***
+
+First, load the necessary packages in the setup chunk below.
+```{r}
+library(rmarkdown)
+library(___________) # add in the package with our graphics functions
+library(___________) # add in the package with our statistics functions
+```
+
+
+## Scenario 1: Run differential
+
+Baseball is a game for statistics lovers. The run differential is defined as the number of runs between the winning and losing teams' scores. For example, if the Giants score 5 and the Dodgers score 7, the run differential of this game is -2 from the Giants’ perspective. One particular statistic is the mean run differential. You'd like to know if your favorite team is, on average, winning games (having a mean run differential greater than zero). Suppose you recorded the run differential for your favorite team for a random sample of games through the season. Your data are in a vector called `Run.Diff` in the file `RunDifferential.csv.` Load in the data below. 
+
+```{r}
+baseball<- _____ (______)
+```
+
+
+1.1. Before conducting any inference, such as a confidence interval, it is recommended that we perform exploratory data analysis. In the code chunk below, calculate the sample size, mean, and standard deviation and create a boxplot of the data in `baseball` for `Run.Diff`. For an appropriate graphic, do not forget to label axes for readers. Then also write the statistics using mathematical notation, and describe them verbally in context, below the code chunk.
+
+< Insert code chunk here >  
+
+> Insert answer here
+
+
+
+1.2. Have the conditions been met to construct a Student's t confidence interval? The conditions are listed, you just need to answer if they were met and justify why in the context of the question, including context or evidence from your study. 
+
+< Insert code chunk as needed here > 
+
+> 1. Random sample: [Met?]; [Justification]  
+  2. Normality or Sufficient sample size:  [Met?]
+      2a. Is the sample from a Normally distributed population or does the sample data have a roughly bell-shaped or symmetric distribution? [Yes / No]; [Justification]       
+      2b. Is the sample size sufficient? [Yes / No]; [Justification]
+
+
+ 
+1.3. Calculate the 95% confidence interval, using the `t.test()` function. Modify the code below by replacing the blanks.
+
+```{r}
+t.test(______, data = ______, conf.level = ______)$conf.int
+```
+
+
+
+1.4. Interpret your confidence interval in the context of the scenario.  
+
+> Insert answer here
+
+
+
+1.5. Based on your confidence interval, is there evidence that your favorite team is winning on average (having a mean run differential greater than zero)?
+
+> Insert answer here
+
+
+
+1.6. Suppose you decided to take a second sample to revisit and revise your question. This time, instead of selecting *any* game throughout the season, you randomly select 10 games *only* from games played at your favorite team's stadium and calculate a confidence interval for the true mean run differential.
+
+Consider the two sampling methods: (i) You randomly sample 35 games throughout the season, (ii) You randomly selected 10 games played at your favorite team's stadium throughout the season. Discuss the consequences of these two sampling methods by answering: If possible, what population can you generalize to? How does the sample size affect your results?
+
+> Insert answer here
+
+
+
+***
+
+## Scenario 2: Interstitial dissolved Oxygen  
+
+Salmonids (a group a fish that contains species of salmon and trout) lay their eggs buried under the sand and gravel in streambeds. All life stages of salmonids use oxygen dissolved in water to meet their oxygen requirements, but the concentrations of dissolved oxygen (dO) that the different life stages can survive vary. The most susceptible life stage to dO concentrations are the eggs. Interstitial (meaning the area between sand/gravel grains in the sediment) dO concentrations are often lower than in the stream, but is a limiting factor for egg metabolic activity. That makes the interstitial dO concentration an important determinant if fish will persist in a particular stream.
+
+The Henry's Fork Foundation is concerned about monitoring the health of salmonids in the stream, including the ability of eggs to survive, and want to determine the interstitial dO concentration on Henry's Fork. [Henry's Fork is a tributary of the Snake River in Idaho]. They randomly choose locations on the stream (by overlaying a numbered grid on a map of the stream and then using a random number generator to choose numbered grid locations) and measure the interstitial dO of each location. The data are located in `dOinterstitial.csv`. Load in the data below. 
+
+
+<Insert code chunk here>
+
+
+2.1. In the text above, bold the general research question. What is the *statistical* research question? Be specific.
+
+> Insert answer here
+
+
+2.2. From the data, calculate the statistics listed in the following table, and then fill in the table with the statistics and parameters. If a parameter is unknown, write "NA." You can round to four decimal points as needed to enter the values. 
+
+```{r}
+
+# calculate statistics, annotating your code to describe what descriptive statistic each line calculates
+
+```  
+  
+Symbol         | Value        
+-------------- | ----------- 
+$\mu$          |          
+$\bar{x}$      |     
+$\sigma$       |     
+$s$            |     
+$n$            |     
+$df$           |     
+
+
+2.3. Create an appropriate graphic of the dO concentration on Henry's Fork. Be sure to label your axes fully!
+
+< Insert code chunk here > 
+
+> Insert answer here
+
+
+
+2.4. State the parameter of interest.
+
+> Insert answer here   
+
+
+
+2.5. Have the conditions been met to construct a Student's t confidence interval? State each condition, answer if it was met, and justify why in the context of the question.
+
+< Insert code chunk as needed here >
+
+> Conditions for t-test:  
+  1. [Condition 1 name]: [Decision]; [evidence and justification in context of question]  
+  2. [Condition 2 name]: [Decision]
+    a. [evidence and justification in context of question]  
+    b. [evidence and justification in context of question]
+
+
+2.6. Calculate a 95% confidence interval for the true mean dO concentration on Henry's Fork, then write your interval below. (Challenge yourself to write the answer in in-line code!)  
+
+<Insert code chunk>
+
+> Insert answer here
+
+
+
+2.7. Interpret your confidence interval in the context of the problem. 
+
+> Insert answer here 
+
+
+
+2.8. Eggs that are 20 days post-fertilization (dpf) need an oxygen concentration of *7.5 mg/L* or greater for metabolic activity for normal development. Based on the confidence interval, do you think the mean dO concentration in the Henry's Fork is high enough for a salmonid egg to survive (i.e., average dO concentration greater than 7.5)? Explain your reasoning, in context.  
+
+> Insert answer here.
+
+
+
+2.9. As eggs grow, their oxygen demands increase. Eggs 35 days post-fertilization (dpf) require oxygen concentrations greater than 9 mg/L for their metabolic demands; eggs incubated at oxygen levels lower than that have delayed hatch times and smaller fry (baby fish) that are unlikely to survive. Based on your confidence interval, do you think that dO concentration is sufficient for eggs at 35 dpf and later (i.e., average dO concentration greater than 9)? Explain your reasoning in context.  
+
+> Insert answer here. 
+
+
+
+2.10. Provide a second piece of evidence from EDA (Exploratory Data Analysis) that supports the results of the confidence interval in answering whether the dO concentration at Henry’s Fork is sufficient for eggs at 20 dpf or for eggs at 35 dpf (i.e., average dO concentration greater than 7 or greater than 9).    
+
+> Insert answer here.
+
+
+2.11. Can you trust the calculations of your confidence interval are accurate? Justify your answer with statistical reasoning.  
+
+> Insert answer here.
+
+
+2.12. Can you generalize your conclusion to the population of interest? If yes, explain why. If not, explain why and identify the population to which you can generalize.  
+
+> Insert answer here.
+
+
+
+2.13. For each of the following, indicate if it is a correct or incorrect interpretation of the confidence interval you calculated in 2.7. Provide an explanation for each.
+
+a. There is a 95% chance that the true mean dO concentration is between the upper and lower bounds of the confidence interval.
+
+> Correct or Incorrect?  
+> Explain.
+
+
+b. 95% of the sample dO concentrations will be between the upper and lower bounds of the confidence interval. 
+
+> Correct or Incorrect?  
+> Explain.
+
+
+c. Suppose we repeat this study, sampling and calculating a 95% confidence interval many times. 95% of the time, the true mean dO concentration will be between the upper and lower bounds of the confidence interval. 5% of the time, it will not.
+
+> Correct or incorrect?  
+> Explain. 
+
+
+
+2.14. All else being equal, if the researchers repeat simple random sampling from the same population, how would the following changes influence the length of a confidence interval? (For each, choose one answer from the brackets and **bold** it.)
+
+a. Increased confidence level (1-$\alpha$): [Wider, Narrower, No Influence]  
+
+b. Smaller sample size (n): [Wider, Narrower, No Influence] 
+
+c. Larger standard deviation: [Wider, Narrower, No Influence]  
+
+
+
+
+
